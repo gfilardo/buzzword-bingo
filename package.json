@@ -1,12 +1,16 @@
 {
   "source": "src/index.html",
+  "homepage": "https://gfilardo.github.io/buzzword-bingo",
   "scripts": {
     "parcel": "parcel",
     "build": "parcel build",
+    "predeploy": "npm run build -- --public-url /buzzword-bingo",
+    "deploy": "gh-pages -d dist",
     "serve": "parcel src/index.html"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
+    "gh-pages": "^5.0.0",
     "parcel": "^2.8.3"
   }
 }
