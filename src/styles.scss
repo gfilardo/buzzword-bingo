@@ -9,13 +9,31 @@ h2 {
     color: #444;
 }
 
+:root {
+    --game-grid-max-width: 660px;
+    --board-width: min(100vw - 30px, var(--game-grid-max-width));
+}
+
+#board {
+    container-type: inline-size;
+}
+
 .board-grid {
-    --board-width: 660px;
     --gutter-size: 10px;
     --cell-side: calc( (var(--board-width) - (var(--gutter-size) * 4)) / 5 );
     --unselected-background: white;
     --selected-background: #eee;
     --selected-winning-background: #abffd5;
+    --font-size: 1em;
+    --cell-padding: 5px;
+    --cell-border-radius: 5px;
+
+    @container (max-width: 400px) {
+        --gutter-size: 2px;
+        --cell-padding: 2px;
+        --font-size: 0.8em;
+        --cell-border-radius: 1px;
+    }
 
     margin: 0 auto;
     width: var(--board-width);
@@ -26,6 +44,8 @@ h2 {
     grid-column-gap: var(--gutter-size);
     grid-row-gap: var(--gutter-size);
     user-select: none;
+    font-size: var(--font-size);
+    hyphens: auto;
 
     & .cell {
         word-wrap: break-word;
@@ -36,12 +56,14 @@ h2 {
         background-color: var(--unselected-background);
         outline: 1px solid lightgrey;
         position: relative;
-        border-radius: 5px;
+        border-radius: var(--cell-border-radius);
         filter: drop-shadow(2px 4px 3px #DDD);
 
-        &:hover:not(.bonus) {
-            transform: translateY(-5px);
-            transition: transform 0.2s;
+        @media(hover) {
+            &:hover:not(.bonus) {
+                transform: translateY(-5px);
+                transition: transform 0.2s;
+            }
         }
 
         &.selected {
@@ -54,7 +76,7 @@ h2 {
 
         .word {
             pointer-events: none;
-            padding: 5px;
+            padding: var(--cell-padding);
             display: block;
             position: absolute;
             top: 50%;
@@ -68,11 +90,11 @@ h2 {
 }
 
 #vocabularySelector {
-    margin: 50px;
+    margin: 30px 0 30px 0;
     text-align: center;
 
     & textarea {
-        width: 100%;
+        width: var(--board-width);
         min-height: 100px;
     }
 
