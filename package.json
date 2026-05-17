@@ -8,9 +8,19 @@
     "deploy": "gh-pages -d dist",
     "serve": "parcel src/index.html"
   },
+  "alias": {
+    "trystero": "./node_modules/trystero/dist/index.mjs",
+    "@trystero-p2p/nostr": "./node_modules/@trystero-p2p/nostr/dist/index.mjs",
+    "@trystero-p2p/core": "./node_modules/@trystero-p2p/core/dist/index.mjs",
+    "@trystero-p2p/torrent": "./node_modules/@trystero-p2p/torrent/dist/index.mjs"
+  },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
     "gh-pages": "^5.0.0",
     "parcel": "^2.8.3"
+  },
+  "dependencies": {
+    "@trystero-p2p/torrent": "^0.24.0",
+    "trystero": "^0.24.0"
   }
 }
