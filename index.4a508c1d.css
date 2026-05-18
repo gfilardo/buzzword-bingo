@@ -32,6 +32,14 @@ h2 {
   display: flex;
 }
 
+.lobby-tagline {
+  max-width: 420px;
+  text-align: center;
+  color: #666;
+  margin: -12px 0 24px;
+  line-height: 1.6;
+}
+
 .lobby-card {
   width: min(100%, 420px);
   background: #fff;

@@ -570,6 +570,7 @@ const vocabSelect = document.querySelector("#vocab-select");
 const playBtn = document.querySelector("#play-btn");
 const randomRoomBtn = document.querySelector("#random-room-btn");
 const lobbyError = document.querySelector("#lobby-error");
+const gameTitle = document.querySelector("#game h2");
 const roomLabel = document.querySelector("#room-label");
 const selfLabel = document.querySelector("#self-label");
 const shareLinkEl = document.querySelector("#share-link");
@@ -645,6 +646,14 @@ playBtn.addEventListener("click", ()=>{
     // Transition to game screen
     lobbyEl.hidden = true;
     gameEl.hidden = false;
+    const confirmLeave = ()=>confirm("Leave the game? You'll lose your current board.");
+    gameTitle.style.cursor = "pointer";
+    gameTitle.addEventListener("click", ()=>{
+        if (confirmLeave()) location.href = location.pathname;
+    });
+    window.addEventListener("beforeunload", (e)=>{
+        e.preventDefault();
+    });
     roomLabel.textContent = `Room: ${roomCode}`;
     selfLabel.textContent = name;
     const shareUrl = buildShareUrl(roomCode, vocabKey);
