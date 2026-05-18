@@ -13,6 +13,7 @@ const vocabSelect = document.querySelector('#vocab-select') as HTMLSelectElement
 const playBtn = document.querySelector('#play-btn') as HTMLButtonElement;
 const randomRoomBtn = document.querySelector('#random-room-btn') as HTMLButtonElement;
 const lobbyError = document.querySelector('#lobby-error') as HTMLElement;
+const gameTitle = document.querySelector('#game h2') as HTMLElement;
 const roomLabel = document.querySelector('#room-label') as HTMLElement;
 const selfLabel = document.querySelector('#self-label') as HTMLElement;
 const shareLinkEl = document.querySelector('#share-link') as HTMLAnchorElement;
@@ -97,6 +98,13 @@ playBtn.addEventListener('click', () => {
   // Transition to game screen
   lobbyEl.hidden = true;
   gameEl.hidden = false;
+
+  const confirmLeave = () => confirm('Leave the game? You\'ll lose your current board.');
+  gameTitle.style.cursor = 'pointer';
+  gameTitle.addEventListener('click', () => {
+    if (confirmLeave()) location.href = location.pathname;
+  });
+  window.addEventListener('beforeunload', e => { e.preventDefault(); });
   roomLabel.textContent = `Room: ${roomCode}`;
   selfLabel.textContent = name;
 
